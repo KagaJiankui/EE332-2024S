@@ -83,6 +83,10 @@
 #########
 !*.rpt
 !*.txt
+!*.md
+!*.html
+!*.pdf
+!*report*/
 help*.txt
 !*.vdi
 #########
