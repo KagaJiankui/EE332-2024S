@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"verilog.languageServer.svls.enabled": true,
+		"verilog.languageServer.svls.path": "svls",
+		"verilog.formatting.verilogHDL.formatter": "verible-verilog-format",
+		"verilog.linting.slang.useWSL": true,
+		"verilog.linting.verilator.useWSL": true,
+		"verilog.linting.linter": "slang",
+		"verilog.linting.path": "slang",
+		"verilog.ctags.path": "ctags",
+		"verilog.formatting.veribleVerilogFormatter.arguments": "--column_limit=160",
+		"verilog.linting.slang.arguments": "--diag-location --diag-macro-expansion --diag-hierarchy always"
+	}
+}
