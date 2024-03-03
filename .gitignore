@@ -7,7 +7,7 @@
 #########
 *
 !.gitignore
-!.*.toml
+!*.toml
 !*.code-workspace
 !*/
 */*.cache/
