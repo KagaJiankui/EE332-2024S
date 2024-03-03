@@ -1,0 +1,126 @@
+\usepackage{listings}
+\lstset{
+    basicstyle          =   \sffamily,          % 基本代码风格
+    keywordstyle        =   \bfseries,          % 关键字风格
+    commentstyle        =   \rmfamily\itshape,  % 注释的风格，斜体
+    stringstyle         =   \ttfamily,  % 字符串风格
+    flexiblecolumns,                % 别问为什么，加上这个
+    numbers             =   left,   % 行号的位置在左边
+    showspaces          =   false,  % 是否显示空格，显示了有点乱，所以不现实了
+    numberstyle         =   \tiny\ttfamily,    % 行号的样式，小五号，tt等宽字体
+    showstringspaces    =   false,
+    captionpos          =   t,      % 这段代码的名字所呈现的位置，t指的是top上面
+    frame               =   shadowbox,   % 显示边框
+    rulesepcolor=\color{red!20!green!20!blue!20}
+}
+
+\lstdefinestyle{Python}{
+    language        =   Python, % 语言选Python
+    backgroundcolor=\color{backpycol},
+    basicstyle      =   \ttfamily,
+    numberstyle     =   \ttfamily,
+    keywordstyle    =   \color{blue},
+    keywordstyle    =   [2] \color{teal},
+    stringstyle     =   \color{magenta},
+    commentstyle    =   \color[HTML]{338AAF}\ttfamily,
+    breaklines      =   true,   % 自动换行，建议不要写太长的行
+    columns         =   fixed,  % 如果不加这一句，字间距就不固定，很丑，必须加
+    basewidth       =   0.5em,
+}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backpycol}{rgb}{0.97,0.95,0.97}
+\lstdefinestyle{C++}{
+    language =[ANSI]C,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color[HTML]{338AAF}\ttfamily,
+    keywordstyle=\sffamily\bfseries\color{magenta},
+    numberstyle=\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    basewidth=0.5em,
+    captionpos=b,
+    columns=fixed,
+    frame=shadowbox,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}
+\lstdefinestyle{matlab}{
+    language=matlab,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color[HTML]{338AAF}\ttfamily,
+    keywordstyle=\sffamily\bfseries\color{magenta},
+    numberstyle=\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    basewidth=0.5em,
+    captionpos=b,
+    columns=fixed,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    frame=shadowbox
+}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{bggray}{rgb}{0.93,0.95,0.94}
+\lstdefinestyle{pseudocode}{
+    backgroundcolor=\color{bggray},
+    columns=fullflexible,
+    tabsize=4,
+    breaklines=true,               % automatic line breaking only at whitespace
+    captionpos=b,                  % sets the caption-position to bottom
+    commentstyle=\color{mygreen},  % comment style
+    escapeinside={\%*}{*)},        % if you want to add LaTeX within your code
+    keywordstyle=\color{blue},     % keyword style
+    stringstyle=\color{mymauve}\ttfamily,  % string literal style
+    frame=shadowbox,
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    % identifierstyle=\color{red},
+    language=c++,
+    numbers=left,
+    numberstyle=\small\color{codegray},
+    basicstyle=\ttfamily,% size of fonts used for the code
+    escapeinside=``,
+    xleftmargin=0.6em,
+    xrightmargin=0.6em,
+    aboveskip=1em
+}
+\lstdefinestyle{Fortran}{
+    language =fortran,
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color[HTML]{338AAF}\ttfamily,
+    keywordstyle=\sffamily\bfseries\color{magenta},
+    numberstyle=\small\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    basewidth=0.5em,
+    captionpos=b,
+    columns=fixed,
+    frame=shadowbox,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4
+}

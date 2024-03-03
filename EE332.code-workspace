@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "report-lab2"
 		}
 	],
 	"settings": {
@@ -15,5 +18,10 @@
 		"verilog.ctags.path": "ctags",
 		"verilog.formatting.veribleVerilogFormatter.arguments": "--column_limit=160",
 		"verilog.linting.slang.arguments": "--diag-location --diag-macro-expansion --diag-hierarchy always"
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+		]
 	}
 }
