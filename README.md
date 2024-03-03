@@ -3,9 +3,9 @@
 ![Progress_Table](README.assets/image.png)
 
 - **18.3%** Lab2
-  - **50%** Full Adder
+  - **60%** Full Adder
     - [x] Simulation
-    - [ ] Report
+    - [ ] **10%** Report
   - **0%** Process Simulation
     - [ ] Simulation
     - [ ] Report
