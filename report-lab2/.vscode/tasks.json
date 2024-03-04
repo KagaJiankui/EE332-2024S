@@ -1,0 +1,183 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Tectonic - BibLaTeX",
+      "type": "shell",
+      "command": "tectonic",
+      "isBackground": true,
+      "args": [
+        "-X",
+        "compile",
+        "./src/${fileBasenameNoExtension}.tex",
+        "-k",
+        "--reruns",
+        "0",
+        "--keep-intermediates",
+        "--hide=./build/${fileBasenameNoExtension}.bbl"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": {
+        "owner": "LaTeX",
+        "fileLocation": [
+          "autoDetect",
+          "${workspaceFolder}/src"
+        ],
+        "pattern": [
+          {
+            "regexp": "^(info|note|warning|error):\\s?(.*\\.(tex|cls|bib|sty)):(\\d+):(\\d*)\\s?(.*)$",
+            "file": 2,
+            "line": 4,
+            "endColumn": 5,
+            "severity": 1,
+            "message": 6
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\[Running `tectonic\\.exe -X .+`\\]",
+          "endsPattern": "^\\[Finished.*Status: \\d+\\]"
+        }
+      }
+    },
+    {
+      "label": "Tectonic - Compile With Bib",
+      "type": "shell",
+      "command": "tectonic",
+      "isBackground": true,
+      "args": [
+        "-X",
+        "compile",
+        "./src/${fileBasenameNoExtension}.tex",
+        "--synctex",
+        "-o",
+        "${workspaceFolder}/build/${fileBasenameNoExtension}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": {
+        "owner": "LaTeX",
+        "fileLocation": [
+          "autoDetect",
+          "${workspaceFolder}/src"
+        ],
+        "pattern": [
+          {
+            "regexp": "^(info|note|warning|error):\\s?(.*\\.(tex|cls|bib|sty)):(\\d+):(\\d*)\\s?(.*)$",
+            "file": 2,
+            "line": 4,
+            "endColumn": 5,
+            "severity": 1,
+            "message": 6
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\[Running `tectonic\\.exe -X .+`\\]",
+          "endsPattern": "^\\[Finished.*Status: \\d+\\]"
+        }
+      },
+      "dependsOn": [
+        "Tectonic - BibLaTeX"
+      ],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Tectonic - Compile",
+      "type": "shell",
+      "command": "tectonic",
+      "isBackground": true,
+      "args": [
+        "-X",
+        "compile",
+        "--synctex",
+        "--keep-intermediates",
+        "--keep-logs",
+        "./src/${fileBasenameNoExtension}.tex",
+        "-o",
+        "${workspaceFolder}/build/${fileBasenameNoExtension}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "silent"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": {
+        "owner": "LaTeX",
+        "fileLocation": [
+          "autoDetect",
+          "${workspaceFolder}/src"
+        ],
+        "pattern": [
+          {
+            "regexp": "^(info|note|warning|error):\\s?(.*\\.(tex|cls|bib|sty)):(\\d+):(\\d*)\\s?(.*)$",
+            "file": 2,
+            "line": 4,
+            "endColumn": 5,
+            "severity": 1,
+            "message": 6
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^\\[Running `tectonic\\.exe -X .+`\\]",
+          "endsPattern": "^\\[Finished.*Status: \\d+\\]"
+        }
+      }
+    },
+    {
+      "label": "echo current EnVs",
+      "type": "shell",
+      "command": "echo",
+      "args": [
+        "'",
+        "workspaceFolder",
+        "${workspaceFolder}\r\n",
+        "workspaceFolderBasename",
+        "${workspaceFolderBasename}\r\n",
+        "file",
+        "${file}\r\n",
+        "relativeFile",
+        "${relativeFile}\r\n",
+        "fileBasename",
+        "${fileBasename}\r\n",
+        "fileBasenameNoExtension",
+        "${fileBasenameNoExtension}\r\n",
+        "cwd",
+        "${cwd}\r\n",
+        "fileDirname",
+        "${fileDirname}\r\n",
+        "fileExtname",
+        "${fileExtname}\r\n",
+        "lineNumber",
+        "${lineNumber}\r\n",
+        "selectedText",
+        "${selectedText}\r\n",
+        "'"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
