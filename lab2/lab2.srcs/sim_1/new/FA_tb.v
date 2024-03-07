@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 10ps
 /**
 Company:
 Engineer:
@@ -44,8 +44,9 @@ module FA_tb;
   end
 
   always begin
-    data={$urandom}/8;
     #5;
+    if(data>7) data=0;
+    data=data+1;
   end
 
 endmodule
