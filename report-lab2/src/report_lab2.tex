@@ -7,7 +7,10 @@
 \usepackage{textcomp}
 % \usepackage{latex-dev}
 \usepackage{theorem,caption,extarrows,mathrsfs,physics,bm}
-\usepackage{graphicx,xcolor,booktabs,subfigure,tikz}
+\usepackage{graphicx,xcolor,booktabs,subfigure}
+\usepackage{tikz}
+\usepackage[european]{circuitikz}
+\usetikzlibrary{calc}
 \usepackage{pgfplots,grffile}
 \usepackage{fontspec}
 \usepackage[skins]{tcolorbox}
@@ -58,37 +61,73 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 Half adder and full adder are basic elements in digital circuits used to perform addition operations on binary numbers.
 
-A half adder
+A \textit{half adder}
 
 \begin{figure}[htpb]
 	\begin{center}
-		\includegraphics[width=0.22\textwidth]{index.assets/20240303235723.png}
+		\begin{tikzpicture}
+			\ctikzset{logic ports=european,tripoles/european not symbol=ieee circle}
+			\draw
+			(0,0) node[xor port] (xor1) {}
+			(0,-2) node[and port] (and1) {}
+			(xor1.out) to[short , -o] ++(1,0) node[right]{\(S\)}
+			(and1.out) to[short , -o] ++(1,0) node[right]{\(C\)}
+			(xor1.in 1) to[short, -o] ++(-1,0) coordinate(x1) node[left]{\(X_1\)}
+			(xor1.in 1) to[short, *-] (and1.in 1)
+			(xor1.in 2) -- ++(-0.3,0) coordinate(j1)
+			(j1) to[short, *-] (j1 |- and1.in 2) -- (and1.in 2)
+			(j1) to[short, -o] (x1 |- xor1.in 2) node[left]{\(X_2\)}
+			;
+		\end{tikzpicture}
 		\caption{Gate Level Description of Half Adder}
+		\label{HA_GateLevel}
 	\end{center}
 \end{figure}
 
-is a combinational logic circuit that takes two binary inputs and produces two binary outputs: sum and carry.
+is a combinational logic circuit shown in Figure.(\ref{HA_GateLevel}) that takes two binary inputs and produces two binary outputs: sum and carry.
 
 \begin{eqnarray}
 	\mathop{\mathrm{HA}}:(x_1,x_2)\mapsto(Q,C) :=
 	\begin{cases}
-			Q&=\mathop{\mathrm{xor}}(x_1,x_2) \\
-			C&=\mathop{\mathrm{and}}(x_1,x_2)
+		Q & =\mathop{\mathrm{xor}}(x_1,x_2) \\
+		C & =\mathop{\mathrm{and}}(x_1,x_2)
 	\end{cases}
 \end{eqnarray}
 
 The main limitation of the half adder is that it cannot handle carry inputs and therefore can only be used for 1-bit addition.
 
-A full adder
+A \textit{full adder} is an extension of the half adder that accepts three binary inputs: two additions and a rounding input, and produces two binary outputs: sum and carry. Full adders can be connected in series to achieve binary addition of any number of bits.
 
 \begin{figure}[htpb]
 	\begin{center}
-		\includegraphics[width=0.45\textwidth]{index.assets/20240303235337.png}
+		\begin{tikzpicture}
+			\ctikzset{logic ports=european,tripoles/european not symbol=ieee circle}
+			\draw
+			(0,0) node[xor port] (xor1) {}
+			(0,-1.6) node[and port] (and1) {}
+			(xor1.out) ++(0.5,0) node[xor port, anchor=in 1] (xor2) {}
+			(xor1.out) ++(0.5,-2) node[and port, anchor=in 1] (and2) {}
+			(and1.out) ++(2.6,0) node[or port, anchor=in 1] (or1) {}
+			(xor1.in 1) to[short, -o] ++(-1,0) coordinate(x1) node[left]{\(X_1\)}
+			(xor1.in 1) to[short, *-] (and1.in 1)
+			(xor1.in 2) -- ++(-0.3,0) coordinate(j1)
+			(j1) to[short, *-] (j1 |- and1.in 2) -- (and1.in 2)
+			(j1) to[short, -o] (x1 |- xor1.in 2) node[left]{\(X_2\)}
+			(x1 |- and2.in 2) coordinate(ci) node[left]{\(C_i\)}
+			(xor1.out) -- ++(0.3,0) coordinate(j2) to[short, *-] (xor2.in 1)
+			(j2) |- (and2.in 1)
+			(ci) -| (and2.in 2)
+			(and2.in 2) to[short, *-] (xor2.in 2)
+			(and1.out) |- (or1.in 1)
+			(and2.out) |- (or1.in 2)
+			(or1.out) to[short, -o] ++(0.25,0) coordinate(co) node[right]{\(C_o\)}
+			(xor2.out) to[short, -o] (co |- xor2.out) node[right]{\(S\)}
+			;
+		\end{tikzpicture}
 		\caption{Gate Level Description of Full Adder}
+		\label{FA_GateLevel}
 	\end{center}
-\end{figure}\label{FA_GateLevel}
-
-is an extension of the half adder that accepts three binary inputs: two additions and a rounding input, and produces two binary outputs: sum and carry. Full adders can be connected in series to achieve binary addition of any number of bits.
+\end{figure}
 
 Implementation of full adder can be derived directly from 3-digit addition, where the final carry output is toggled if any of \(X_1+X_2\) or \(C_i+Q_1\) produces a carry:
 
@@ -98,7 +137,7 @@ Implementation of full adder can be derived directly from 3-digit addition, wher
 	c_o &= \mathop{\mathrm{or}}(c_1,c_2)
 \end{eqnarray}
 
-Therefore the gate-level circuit of the full adder can be easily captured, as shown of Figure. (\ref{FA_GateLevel})
+Therefore the gate-level circuit of the full adder can be easily captured, as shown of Figure.(\ref{FA_GateLevel})
 
 \section{Verilog Modeling}
 
@@ -106,18 +145,80 @@ There are two levels of HDL modeling for full adder, one for gate level descript
 
 \subsection{Gate-Level Implementation}
 
+\lstinputlisting[caption={Gate Level Modeling of Full Adder in Verilog}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../lab2/lab2.srcs/sources_1/new/full_adder_g.v}
+
 For the gate level modeling, the DNF (OR-AND) of the output ports are required:
 
 \begin{eqnarray}
-\begin{aligned}
-	Q_2&=HA(HA(x_1,x_2)[0],c_i)[0] \\
-	&=\mathop{\mathrm{xor}}(\mathop{\mathrm{xor}}(x_1,x_2),c_i) \\
-	&= \overline{AB} C+\overline{A} B \overline{C} + A \overline{BC} +ABC \\
-	C_{\mathrm{out}}&=AB+BC+AC
-\end{aligned}
+	\begin{aligned}
+		Q_2              & =HA(HA(x_1,x_2)[0],c_i)[0]                                           \\
+		                 & =\mathop{\mathrm{xor}}(\mathop{\mathrm{xor}}(x_1,x_2),c_i)           \\
+		                 & = \overline{AB} C+\overline{A} B \overline{C} + A \overline{BC} +ABC \\
+		C_{\mathrm{out}} & =AB+BC+AC
+	\end{aligned}
 \end{eqnarray}
 
-Therefore, the Verilog code is pretty straight forward:
+Therefore, the Verilog code is pretty straight forward, as the Code.(\ref{glm_fa}). For the Vivado elaboration and synthesis process, the logic functions are expanded to its DNF, meaning only AND/OR/NOT gates remains in the elaborated schematic:
 
-\lstinputlisting[caption={Gate Level Modeling of Full Adder in Verilog}, language=verilog, style=verilog, label={glm_fa}, linewidth=0.92\linewidth]{../../lab2/lab2.srcs/sources_1/new/full_adder_g.v}
+\begin{figure}[htpb]
+	\begin{center}
+		\includegraphics[width=0.97\linewidth]{report_lab2.assets/20240307171752.png}
+		\caption{Elaborated Gate Level Description}
+		\label{elaborated_gl_sch}
+	\end{center}
+\end{figure}
+
+\subsection{LUT Implementation}
+
+\lstinputlisting[caption={Gate Level Modeling of Full Adder in Verilog}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../lab2/lab2.srcs/sources_1/new/full_adder_lut.v}
+
+The combine logic functions are implemented by LUT(Look-Up Table)s inside the FPGA components in real world, while the half adder is a common LUT element inside the CLBs. By simply configuring the switchable connections between the CLBs and the controlling MUXs inside the CLBs, a cascaded design can be easily obtained.
+
+\begin{figure}[htpb]
+	\begin{center}
+		\includegraphics[width=0.97\linewidth]{report_lab2.assets/20240307172354.png}
+		\caption{Elaborated RTL Level Description}
+		\label{elaborated_lut_level_sch}
+	\end{center}
+\end{figure}
+
+\subsection{Synthesized Implementation}
+
+\begin{figure}[htpb]
+	\begin{center}
+		\includegraphics[width=0.97\linewidth]{report_lab2.assets/20240307172835.png}
+		\caption{Synthesized Design}
+		\label{FA_synth}
+	\end{center}
+\end{figure}
+
+Either the gate level design (\ref{elaborated_gl_sch}) or the RTL level design (\ref{elaborated_lut_level_sch}) are synthesized into the same schematic (\ref{FA_synth}) after the synthesis and implementation process, since the FPGA device only provide configurable LUT as the measure to combinational logic inside the CLB.
+
+In the synthesized schematic (\ref{FA_synth}), the two LUT cells are combinational logic functions of \(S=\mathop{\mathrm{LUT_1}}(X_0,X_1,C_i)\) and \(C_o=\mathop{\mathrm{LUT_2}}(X_0,X_1,C_i)\) respectively.
+
+\section{Simulation}
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}[htb]{ccccccc}
+			\toprule
+			\(X_1\) & \(X_0\) & \(C_i\) & \(\mathop{\mathrm{dec}}(in[2:0])\) & \(C_o\) & \(S\) & \(\mathop{\mathrm{dec}}(out[1:0])\) \\
+			\midrule
+			0       & 0       & 0       & 0                                  & 0       & 0     & 0                                   \\
+			0       & 0       & 1       & 1                                  & 0       & 1     & 1                                   \\
+			0       & 1       & 0       & 2                                  & 0       & 1     & 1                                   \\
+			0       & 1       & 1       & 3                                  & 1       & 0     & 2                                   \\
+			1       & 0       & 0       & 4                                  & 0       & 1     & 1                                   \\
+			1       & 0       & 1       & 5                                  & 1       & 0     & 2                                   \\
+			1       & 1       & 0       & 6                                  & 1       & 0     & 2                                   \\
+			1       & 1       & 1       & 7                                  & 1       & 1     & 3                                   \\
+			\bottomrule
+		\end{tabular}
+		\caption{Truth Table of Full Adder}
+		\label{tt_fa}
+	\end{center}
+\end{table}
+
+The truth table of the full adder is Table.(\ref{tt_fa}).
+
 \end{document}

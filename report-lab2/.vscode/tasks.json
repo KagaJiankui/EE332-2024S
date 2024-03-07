@@ -1,6 +1,91 @@
 {
   "version": "2.0.0",
   "tasks": [
+      {
+        "label": "Tectonic - Watch",
+        "type": "shell",
+        "command": "tectonic",
+        "isBackground": true,
+        "args": [
+          "-X",
+          "watch"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "silent"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": {
+          "owner": "LaTeX",
+          "fileLocation": [
+            "autoDetect",
+            "${workspaceFolder}/src"
+          ],
+          "pattern": [
+            {
+              "regexp": "^(info|note|warning|error):\\s?(.*\\.(tex|cls|bib|sty)):(\\d+):(\\d*)\\s?(.*)$",
+              "file": 2,
+              "line": 4,
+              "endColumn": 5,
+              "severity": 1,
+              "message": 6
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^\\[Running `tectonic\\.exe -X .+`\\]",
+            "endsPattern": "^\\[Finished.*Status: \\d+\\]"
+          }
+        }
+      },
+      {
+        "label": "Tectonic - Build",
+        "type": "shell",
+        "command": "tectonic",
+        "isBackground": true,
+        "args": [
+          "-X",
+          "build",
+          "--keep-logs"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "presentation": {
+          "reveal": "silent"
+        },
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": {
+          "owner": "LaTeX",
+          "fileLocation": [
+            "autoDetect",
+            "${workspaceFolder}/src"
+          ],
+          "pattern": [
+            {
+              "regexp": "^(info|note|warning|error):\\s?(.*\\.(tex|cls|bib|sty)):(\\d+):(\\d*)\\s?(.*)$",
+              "file": 2,
+              "line": 4,
+              "endColumn": 5,
+              "severity": 1,
+              "message": 6
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^\\[Running `tectonic\\.exe -X .+`\\]",
+            "endsPattern": "^\\[Finished.*Status: \\d+\\]"
+          }
+        }
+      },
     {
       "label": "Tectonic - BibLaTeX",
       "type": "shell",
