@@ -1,5 +1,13 @@
 # EE332 Digital System Design
 
+## 注意事项
+
+提交代码时请参考gitignore文件中的忽略项
+- Vivado项目文件夹仅需上传`{项目根目录}/*.srcs/**/new`下的Verilog或VHDL源码文件
+- 无需上传`{项目根目录}/*.(sim|synth|impl)/**`下的仿真、综合、实现文件
+
+## Progress
+
 ![Progress_Table](README.assets/image.png)
 
 - **18.3%** Lab2
