@@ -5,16 +5,15 @@
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{textcomp}
-% \usepackage{latex-dev}
-\usepackage{theorem,caption,extarrows,mathrsfs,physics,bm}
-\usepackage{graphicx,xcolor,booktabs,subfigure}
+\usepackage{theorem,caption,extarrows,mathrsfs}
+\usepackage{graphicx,xcolor,hyperref,booktabs,float,subfig,overpic}
 \usepackage{tikz}
 \usepackage[european]{circuitikz}
 \usetikzlibrary{calc}
 \usepackage{pgfplots,grffile}
 \usepackage{fontspec}
 \usepackage[skins]{tcolorbox}
-\setmainfont{CMU Serif}
+\setmainfont{STIX Two Text}
 \setsansfont{CMU Sans Serif}
 \setmonofont{Sarasa Fixed SC Nerd Font}
 \pgfplotsset{compat=newest}
@@ -25,15 +24,36 @@
 \usepgfplotslibrary{patchplots}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
 T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-%% Define the theorem and proof
-\newtheorem{theorem}[subsection]{Theorem}
-\newtheorem{definition}[subsection]{Definition}
-\newenvironment{thmbox}{\par
-\vspace{4pt}
-\begin{center}
-	\tcbset{enhanced,notitle,colframe=black,colback=white}
-	\begin{tcolorbox}[fuzzy shadow={1.6mm}{-1.6mm}{0mm}{0mm}{fill=black!90!white},arc=0mm]}{\end{tcolorbox}
-\end{center}}
+%% href setup
+\usepackage[normalem]{ulem}
+\definecolor{mylinkcolor}{HTML}{0078D4}
+\definecolor{myulcolor}{HTML}{00487F}
+\hypersetup{
+	hidelinks=true
+}
+% \newcommand\reduline{\bgroup\markoverwith{\textcolor{red}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon}
+\makeatletter
+  \newcommand\reduline{\bgroup\markoverwith{\textcolor{red}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon}
+  \UL@protected\def\bluedotuline{\leavevmode \bgroup
+    \UL@setULdepth
+    \ifx\UL@on\UL@onin \advance\ULdepth2\p@\fi
+    \markoverwith{\begingroup
+       %\advance\ULdepth0.08ex
+       \lower\ULdepth\hbox{\kern.06em \textcolor{myulcolor}{.}\kern.04em}%
+       \endgroup}%
+    \ULon}
+  \UL@protected\def\bluedashuline{\leavevmode \bgroup
+    \UL@setULdepth
+    \ifx\UL@on\UL@onin \advance\ULdepth2\p@\fi
+    \markoverwith{\kern.13em
+    \vtop{\color{myulcolor}\kern\ULdepth \hrule width .3em}%
+    \kern.13em}\ULon}
+\makeatother
+
+\newcommand{\myhy}[1]{%
+	\hyperref[#1]{\color{mylinkcolor}\bluedotuline{\textit{\ttfamily\footnotesize #1}}}%
+}
+%% Listings setup
 \input{listingset.tex}
 
 \title{EE332 Lab2: Simulation of Full Adder on Nexys 4 DDR}
@@ -51,6 +71,8 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{abstract}
 	This report focuses on the phenomenons encountered in the simulation of a simple full adder, to reveal some critical features of FPGA programming comparing to ordinary programmable devices. Among these phenomenons, jitters and the race-hazard conditions are of the most concerns.
+
+	Code for this experiment can be found at \myhy{https://github.com/KagaJiankui/EE332-2024S/tree/master/lab2/lab2.srcs}.
 \end{abstract}
 \vspace{1em}
 \begin{IEEEkeywords}
@@ -219,6 +241,64 @@ In the synthesized schematic (\ref{FA_synth}), the two LUT cells are combination
 	\end{center}
 \end{table}
 
-The truth table of the full adder is Table.(\ref{tt_fa}).
+The truth table of the full adder is Table.(\ref{tt_fa}). For the design using gate-level description, simulation result is shown in the waveform figure corresponding to each stage:
+
+\begin{itemize}
+	\item Figure.\ref{sim_result}\subref{sim_behv}: \textbf{behavioral} simulation after \textbf{elaboration}
+	\item Figure.\ref{sim_result}\subref{sim_synth}: \textbf{timing} simulation after \textbf{synthesis}
+	\item Figure.\ref{sim_result}\subref{sim_impl}: \textbf{timing} simulation after \textbf{implementation}
+\end{itemize}
+
+\begin{figure}[htpb]
+	\begin{center}
+		\subfloat[Behavioral Simulation]{\label{sim_behv}\includegraphics[width=0.45\columnwidth]{report_lab2.assets/20240307184341.png}}\hspace{0.05\columnwidth}
+		\subfloat[Timing after Synthesis]{\label{sim_synth}\includegraphics[width=0.45\columnwidth]{report_lab2.assets/20240307184023.png}}\\
+		\subfloat[Timing after Implementation]{\label{sim_impl}\includegraphics[width=0.97\columnwidth]{report_lab2.assets/20240307184637.png}}
+		\caption{Simulation Results}
+		\label{sim_result}
+	\end{center}
+\end{figure}
+
+Additionally, the timing simulation result of the design using RTL block-level description after implementation is also provided in Figure.(\ref{sim_impl_rtlblk}), since the only difference between the block-level version and the gate-level version is the routing after implementation.
+
+\begin{figure}[htpb]
+	\begin{center}
+		\includegraphics[width=0.97\linewidth]{report_lab2.assets/20240307190951.png}
+		\caption{Timing Simulation of RTL Block-level Design}
+		\label{sim_impl_rtlblk}
+	\end{center}
+\end{figure}
+
+Vivado only accepts one single top file in one synthesis/implementation batch, resulting that only one module can be accurately simulated at implemented level, while the others remains behavioral level. In the following discussions, the behavioral level trail are considered as a marking for comparison.
+
+\subsection{Consistency}
+
+Comparing result Figure.\ref{sim_result}\subref{sim_behv} from both gate-level and RTL-level designs with the truth table Table.\ref{tt_fa}, it is easy to identify that the behavioral simulation result is consistent with the truth table. Therefore the consistency is verified.
+
+However, there exists one difference between the behavioral simulation result and the waveforms shown in lecture notes, that the result from Vivado simlulation returns its output immediately after the initial Hi-Z undeterministric state, while the result in lecture notes shows that there is additional delay from the end of Hi-Z state to the first sensible output. The reason to this phenomenon can be the optimizations done by Vivado elaborator.
+
+\subsection{Delay}
+
+Compare the other 2 simulation results with the behavioral simulation result, the initial undetermined state is conspicuous since it is marked in eye-catching red highlights, while there is no undetermined regions or time domain offsets in behavioral simulation result suggesting the existence of delays.
+
+Additionally, the delay of gate-level design after implementation is slightly higher than that of an RTL-level design, by comparing the time the system remains undetermined state. The reason to this phenomenon can be the different path length between CLBs used in the different design, and the RTL-level design using half adder suggests the elaborator and synthesizer to route a path with lower distance.
+
+\subsection{Jitters}
+
+Contrast the position of the jitter in the output waveform with the edge of the input waveform on the time axis, the moments when the output waveform has a jitter are easily found to correspond to the moments when both the rising and falling edges of the multiple input waveforms are present plus a gate delay.
+
+\begin{figure}[htpb]
+	\begin{center}
+		\includegraphics[width=0.75\linewidth]{report_lab2.assets/20240308154213.png}
+		\caption{Explanation of Race Conditions}
+		\label{race_cond_explain}
+	\end{center}
+\end{figure}
+
+By referencing the schematic of the synthesized design, there only exists one single element between the multiple inputs with race conditions and both of the output port, thus the delay between the emergence of race condition \ref{race_cond_explain} and the spikes in output is the unit delay of one single LUT element.
+
+\section*{\textbf{Appendix.} Testbench}
+
+\lstinputlisting[caption={Testbench}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../lab2/lab2.srcs/sim_1/new/FA_tb.v}
 
 \end{document}

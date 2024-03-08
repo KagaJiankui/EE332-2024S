@@ -10,13 +10,13 @@
 
 ![Progress_Table](README.assets/image.png)
 
-- **18.3%** Lab2
-  - **60%** Full Adder
+- **40%** Lab2
+  - **100%** Full Adder
     - [x] Simulation
-    - [ ] **10%** Report
-  - **0%** Process Simulation
-    - [ ] Simulation
-    - [ ] Report
+    - [x] Report
+  - **100%** Process Simulation
+    - [x] Simulation
+    - [x] Report
   - **0%** 16-4 Proirity Coder
     - [ ] Simulation
     - [ ] Report
