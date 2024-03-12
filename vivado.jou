@@ -2,8 +2,8 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:47:01 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Thu Mar  7 18:18:47 2024
-# Process ID: 38509
+# Start of session at: Thu Mar  7 19:20:06 2024
+# Process ID: 67662
 # Current directory: /home/lexington/EE332
 # Command line: vivado
 # Log file: /home/lexington/EE332/vivado.log
@@ -13,52 +13,3 @@
 start_gui
 open_project /home/lexington/EE332/lab2/lab2.xpr
 update_compile_order -fileset sources_1
-synth_design -rtl -rtl_skip_mlo -name rtl_1
-launch_simulation
-source FA_tb.tcl
-close_sim
-launch_simulation
-source FA_tb.tcl
-close_sim
-launch_simulation
-reset_simulation -simset sim_1 -mode behavioral
-reset_simulation -simset sim_1 -mode post-synthesis -type timing
-reset_simulation -simset sim_1 -mode post-implementation -type timing
-reset_simulation -simset sim_1 -mode post-synthesis -type functional
-reset_simulation -simset sim_1 -mode post-implementation -type functional
-reset_simulation -simset sim_1 -mode behavioral
-launch_simulation
-launch_simulation
-source FA_tb.tcl
-close_sim
-reset_simulation -simset sim_1 -mode behavioral
-launch_simulation
-source FA_tb.tcl
-reset_run synth_1
-launch_runs synth_1 -jobs 20
-wait_on_run synth_1
-launch_runs impl_1 -jobs 20
-wait_on_run impl_1
-close_sim
-close_design
-launch_simulation -mode post-synthesis -type timing
-source FA_tb.tcl
-launch_simulation -mode post-implementation -type timing
-source FA_tb.tcl
-close_sim
-close_sim
-launch_simulation
-source FA_tb.tcl
-load_feature simulator
-open_wave_database {/home/lexington/EE332/lab2/lab2.sim/sim_1/impl/timing/xsim/FA_tb_time_impl.wdb}
-add_wave {{/FA_tb/data}} 
-current_wave_config {Untitled 8}
-add_wave {{/FA_tb/out_g}} 
-current_wave_config {Untitled 8}
-add_wave {{/FA_tb/out_lut}} 
-current_sim simulation_7
-close_sim
-save_wave_config {/home/lexington/EE332/lab2/lab2.sim/sim_1/impl/timing/xsim/FA_tb_time_impl.wcfg}
-add_files -fileset sim_1 -norecurse /home/lexington/EE332/lab2/lab2.sim/sim_1/impl/timing/xsim/FA_tb_time_impl.wcfg
-set_property xsim.view /home/lexington/EE332/lab2/lab2.sim/sim_1/impl/timing/xsim/FA_tb_time_impl.wcfg [get_filesets sim_1]
-close_sim

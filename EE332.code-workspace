@@ -9,14 +9,18 @@
 	],
 	"settings": {
 		"verilog.languageServer.svls.enabled": true,
-		"verilog.languageServer.svls.path": "svls",
-		"verilog.formatting.verilogHDL.formatter": "verible-verilog-format",
+		"verilog.languageServer.svls.path": "/home/lexington/.cargo/bin/svls",
+		"verilog.formatting.verilogHDL.formatter": "verilog-format",
 		"verilog.linting.slang.useWSL": true,
 		"verilog.linting.verilator.useWSL": true,
 		"verilog.linting.linter": "slang",
-		"verilog.linting.path": "slang",
+		"verilog.linting.path": "/usr/local/bin/slang",
 		"verilog.ctags.path": "ctags",
 		"verilog.formatting.veribleVerilogFormatter.arguments": "--column_limit=160",
-		"verilog.linting.slang.arguments": "--diag-location --diag-macro-expansion --diag-hierarchy always"
+		"verilog.linting.slang.arguments": "--diag-location --diag-macro-expansion --diag-hierarchy always",
+		"verilog.languageServer.veribleVerilogLs.enabled": false,
+		"verilog.languageServer.veridian.enabled": false,
+		"verilog.languageServer.veribleVerilogLs.path": "",
+		"verilog.languageServer.veridian.path": ""
 	}
 }
