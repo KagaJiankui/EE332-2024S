@@ -6,7 +6,7 @@ module encoder4x2_lut (
 );
   reg [1:0] lut[0:15];
   initial begin
-    lut[4'h0] = 2'bxx;
+    lut[4'h0] = 2'bzz;
     lut[4'h1] = 2'b00;
     lut[4'h2] = 2'b01;
     lut[4'h3] = 2'b01;

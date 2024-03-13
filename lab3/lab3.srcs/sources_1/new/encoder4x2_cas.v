@@ -16,7 +16,7 @@ module encoder4x2_cas (
     end else if (in[0]) begin
       out = 2'b00;
     end else begin
-      out = 2'bxx;
+      out = 2'bzz;
     end
   end
 

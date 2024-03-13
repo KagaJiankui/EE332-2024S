@@ -20,7 +20,7 @@
 
 /* verilator lint_off UNOPTFLAT */
 
-module tb_4x2;
+module tb_encoder_4to2;
 reg [3:0] data;
 wire [1:0] result1;
 wire [1:0] result2;
@@ -50,6 +50,7 @@ initial begin
 end
 
 always begin
+  #5;
   if (data>15) begin
     data=0;
   end
