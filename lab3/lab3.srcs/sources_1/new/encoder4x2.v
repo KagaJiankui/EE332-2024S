@@ -17,7 +17,7 @@ always @(in) begin
   end
   else begin
     v=1'b0;
-    out=2'bzz;
+    out=2'b00;
   end
 end
 
