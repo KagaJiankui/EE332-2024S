@@ -1,48 +1,88 @@
 name: lab3
 project_disk_path: ""
 project_type: genericProject
-toplevel: "lab3.srcs/sources_1/new/encoder16x4.v"
+toplevel: "../.."
 files: 
-  - name: "lab3.srcs/sources_1/new/encoder16x4.v"
-    file_type: verilogSource
-    file_version: 2000
-    is_include_file: false
-    include_path: ""
-    logical_name: ""
-    is_manual: true
-    source_type: true
-  - name: "lab3.srcs/sources_1/new/encoder4x2_cas.v"
-    file_type: verilogSource
-    file_version: 2000
-    is_include_file: false
-    include_path: ""
-    logical_name: ""
-    is_manual: true
-    source_type: true
-  - name: "lab3.srcs/sources_1/new/encoder2x1.v"
-    file_type: verilogSource
-    file_version: 2000
-    is_include_file: false
-    include_path: ""
-    logical_name: ""
-    is_manual: true
-    source_type: true
-  - name: "lab3.srcs/sources_1/new/encoder4x2.v"
-    file_type: verilogSource
-    file_version: 2000
-    is_include_file: false
-    include_path: ""
-    logical_name: ""
-    is_manual: true
-    source_type: true
   - name: "lab3.srcs/sources_1/new/encoder4x2_lut.v"
     file_type: verilogSource
     file_version: 2000
     is_include_file: false
     include_path: ""
     logical_name: ""
+    is_manual: false
+    source_type: false
+  - name: "lab3.srcs/sources_1/new/encoder4x2_cas.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
+    is_manual: false
+    source_type: false
+  - name: "lab3.srcs/sources_1/new/encoder4x2.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
+    is_manual: false
+    source_type: false
+  - name: "lab3.srcs/sources_1/new/encoder16x4.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
+    is_manual: false
+    source_type: false
+  - name: "lab3.srcs/sim_4x2/new/tb_4x2.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
+    is_manual: false
+    source_type: false
+  - name: "lab3.srcs/sources_1/new/encoder16x4_cas.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
     is_manual: true
     source_type: true
+  - name: "lab3.srcs/sources_1/new/encoder16x4_lut.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
+    is_manual: true
+    source_type: true
+  - name: "lab3.srcs/sim_1/new/tb_encoder_4to2.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
+    is_manual: true
+    source_type: none
+  - name: "lab3.srcs/sim_2/new/tb_encoder_16to4.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
+    is_manual: true
+    source_type: none
+  - name: "lab3.srcs/sim_3/new/tb_encoder_16x4_lut.v"
+    file_type: verilogSource
+    file_version: 2000
+    is_include_file: false
+    include_path: ""
+    logical_name: ""
+    is_manual: true
+    source_type: none
 hooks: 
   pre_build: 
     []
@@ -99,7 +139,7 @@ configuration:
       use_tabs: false
       indentation_size: 2
     verible: 
-      format_args: "--column_limit=160"
+      format_args: "--column_limit=160 --wrap_spaces=2 --indentation_spaces=2"
     standalone: 
       keyword_case: lowercase
       name_case: lowercase
@@ -283,7 +323,7 @@ configuration:
     verible: 
       installation_path: "/usr/local/bin"
     verilator: 
-      installation_path: "/usr/local/bin/verilator"
+      installation_path: "/usr/local/bin"
       mode: cc
       libs: 
         []
@@ -297,7 +337,7 @@ configuration:
       installation_path: "/opt/Xilinx/Vivado/2022.1/bin"
       part: "xc7a100tcsg324-1"
       synth: ""
-      pnr: vivado
+      pnr: none
       jtag_freq: 10000
       hw_target: ""
     vunit: 
@@ -386,6 +426,6 @@ tool_options:
       installation_path: "/opt/Xilinx/Vivado/2022.1/bin"
       part: "xc7a100tcsg324-1"
       synth: ""
-      pnr: vivado
+      pnr: none
       jtag_freq: 10000
       hw_target: ""

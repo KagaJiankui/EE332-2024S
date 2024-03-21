@@ -1,0 +1,20 @@
+# list of directories with header files
+include_dirs:
+  - "lab3/lab3.srcs/sources_1/new"
+  - "lab3/lab3.srcs/sims_1/new"
+  - "lab3/lab3.srcs/sims_2/new"
+  - "lab3/lab3.srcs/sims_3/new"
+# list of directories to recursively search for SystemVerilog/Verilog sources
+source_dirs:
+  - "lab3/lab3.srcs/.srcs/sources_1/new"
+  - "lab3/lab3.srcs/.srcs/sims_1/new"
+  - "lab3/lab3.srcs/.srcs/sims_2/new"
+  - "lab3/lab3.srcs/.srcs/sims_3/new"
+verible:
+  format:
+    enabled: false
+    path: ""
+verilator:
+  syntax:
+    enabled: false
+log_level: Warn

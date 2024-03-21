@@ -68,7 +68,7 @@ $$
 
 易知在 $K=e\approx 2.71828$ 时取得最小值 $T_{min}=\mathcal{O}(e \ln N)$.
 
-![complexity](delay-o_1-lut.png)
+![complexity](report_lab3.assets/delay-o_1-lut.png)
 
 对于离散情形, $k=1$ 和 $k=2$ 时时间复杂度相等, 因此可以在最底层采用4-2优先编码器.
 
