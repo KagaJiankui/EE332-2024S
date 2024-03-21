@@ -1,4 +1,4 @@
-`timescale 1ns / 10ps
+`timescale 1us / 10ns
 module encoder16x4 (
     input wire clk,
     input [15:0] in,
@@ -54,7 +54,7 @@ module encoder16x4 (
       2'b10:   out[1:0] <= {result1[1], result0[1]};
       2'b01:   out[1:0] <= {result1[2], result0[2]};
       2'b00:   out[1:0] <= {result1[3], result0[3]};
-      default: out[1:0] <= 2'bzz;
+      default: out[1:0] <= 2'b00;
     endcase
   end
 endmodule

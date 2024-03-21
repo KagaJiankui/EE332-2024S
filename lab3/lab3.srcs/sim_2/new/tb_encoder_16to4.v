@@ -1,4 +1,4 @@
-`timescale 1ns / 10ps
+`timescale 1us / 10ns
 /*
  Company:
  Engineer:
@@ -28,6 +28,7 @@ module tb_encoder_16to4;
   wire [3:0] result;
   wire v;
   reg clock;
+  parameter reg [32:0] powerupDelay=30;
 
   encoder16x4 encoder (
       .clk(clock),
@@ -42,6 +43,7 @@ module tb_encoder_16to4;
     incr = 16'h0001;
     mask = 16'h0000;
     test_rand = {$urandom} & 16'hFFFF;
+    #powerupDelay; // register initialization on powerUp
     forever begin
       #5;
       clock = ~clock;

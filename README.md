@@ -18,8 +18,8 @@
   - **100%** Process Simulation
     - [x] Simulation
     - [x] Report
-  - **0%** 16-4 Proirity Coder
-    - [ ] Simulation
+  - **70%** 16-4 Proirity Coder
+    - [x] Simulation
     - [ ] Report
   - **0%** Decimal Counter
     - [ ] Simulation
@@ -30,8 +30,10 @@
   - **0%** Performance and cost comparison of 16-bit multipliers
     - [ ] Simulation
     - [ ] Report
-- **0%** Lab3
-  - 0% 7-segment LED decoder
+- **33%** Lab3 7-segment LED decoder
+  - [x] Table
+  - [] Simulation
+  - [] Report
 - **0%** Lab4
   - 0% Step motor
 - **5%** Project: FOC Motor Control using FPGA

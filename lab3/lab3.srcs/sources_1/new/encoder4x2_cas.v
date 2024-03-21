@@ -1,4 +1,4 @@
-`timescale 1ns / 10ps
+`timescale 1us / 10ns
 module encoder4x2_cas (
     input wire [3:0] in,
     output reg [1:0] out,
