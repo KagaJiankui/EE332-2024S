@@ -46,3 +46,13 @@
   - **0%** Mechanical manufacturing
     - CAD
     - 3dp frame
+
+
+## 鸣谢
+
+[vivado生成的pdf转图片和裁剪](report-lab3/src/report_lab3.assets/pdf_process.py):
+
+- [Python 使用 OpenCV 自動裁切掃描文件白邊、修正傾斜角度教學](https://blog.gtwang.org/programming/python-opencv-auto-crop-and-rotate-scanned-image-tutorial/)
+- [Python 批量处理PNG、JPG图片 去白边](https://blog.csdn.net/weixin_43483381/article/details/122551027)
+- Numpy/PyMuPDF/Matplotlib 文档
+- chatgpt等AI工具

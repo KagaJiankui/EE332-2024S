@@ -29,6 +29,7 @@
 !*.bmp
 !*.webp
 !*report*/
+!*report*/**/*.py
 !*.assets/
 help*.txt
 !*.vdi
