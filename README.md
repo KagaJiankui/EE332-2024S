@@ -18,9 +18,9 @@
   - **100%** Process Simulation
     - [x] Simulation
     - [x] Report
-  - **70%** 16-4 Proirity Coder
+  - **100%** 16-4 Proirity Coder
     - [x] Simulation
-    - [ ] Report
+    - [x] Report
   - **0%** Decimal Counter
     - [ ] Simulation
     - [ ] Report
