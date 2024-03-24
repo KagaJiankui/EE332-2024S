@@ -32,8 +32,8 @@
     - [ ] Report
 - **33%** Lab3 7-segment LED decoder
   - [x] Table
-  - [] Simulation
-  - [] Report
+  - [ ] Simulation
+  - [ ] Report
 - **0%** Lab4
   - 0% Step motor
 - **5%** Project: FOC Motor Control using FPGA
