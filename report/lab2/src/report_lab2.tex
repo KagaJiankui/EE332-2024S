@@ -167,7 +167,7 @@ There are two levels of HDL modeling for full adder, one for gate level descript
 
 \subsection{Gate-Level Implementation}
 
-\lstinputlisting[caption={Gate Level Modeling of Full Adder in Verilog}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../lab2/lab2.srcs/sources_1/new/full_adder_g.v}
+\lstinputlisting[caption={Gate Level Modeling of Full Adder in Verilog}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../../lab2/lab2.srcs/sources_1/new/full_adder_g.v}
 
 For the gate level modeling, the DNF (OR-AND) of the output ports are required:
 
@@ -192,7 +192,7 @@ Therefore, the Verilog code is pretty straight forward, as the Code.(\ref{glm_fa
 
 \subsection{LUT Implementation}
 
-\lstinputlisting[caption={Gate Level Modeling of Full Adder in Verilog}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../lab2/lab2.srcs/sources_1/new/full_adder_lut.v}
+\lstinputlisting[caption={Gate Level Modeling of Full Adder in Verilog}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../../lab2/lab2.srcs/sources_1/new/full_adder_lut.v}
 
 The combine logic functions are implemented by LUT(Look-Up Table)s inside the FPGA components in real world, while the half adder is a common LUT element inside the CLBs. By simply configuring the switchable connections between the CLBs and the controlling MUXs inside the CLBs, a cascaded design can be easily obtained.
 
@@ -299,6 +299,6 @@ By referencing the schematic of the synthesized design, there only exists one si
 
 \section*{\textbf{Appendix.} Testbench}
 
-\lstinputlisting[caption={Testbench}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../lab2/lab2.srcs/sim_1/new/FA_tb.v}
+\lstinputlisting[caption={Testbench}, language=verilog, style=verilog, label=glm_fa, linewidth=0.92\linewidth]{../../../lab2/lab2.srcs/sim_1/new/FA_tb.v}
 
 \end{document}

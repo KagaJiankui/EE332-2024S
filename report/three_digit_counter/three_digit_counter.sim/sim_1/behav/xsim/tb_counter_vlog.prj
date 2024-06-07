@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../three_digit_counter.srcs/sources_1/new/counter.v" \
+"../../../../three_digit_counter.srcs/sources_1/new/counter_top.v" \
+"../../../../three_digit_counter.srcs/sources_1/new/led_decoder.v" \
+"../../../../three_digit_counter.srcs/sim_1/new/tb_counter.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

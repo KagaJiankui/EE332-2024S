@@ -1,0 +1,2 @@
+Breakpoint File Version 1.0
+95,true,"/home/lexington/EE332/three_digit_counter/three_digit_counter.srcs/sources_1/new/counter_top.v"

@@ -155,7 +155,7 @@ and the schematic (\ref{cascaded_83_encoder}) of the elaboration result is basic
 
 For 4-2 encoder, the module is instantialized with parameter \lstinline{.digit(4), .digit_out(2)},
 
-\lstinputlisting[language=verilog, style=verilog]{../../lab3/lab3.srcs/sources_1/new/encoder4x2_cas.v}
+\lstinputlisting[language=verilog, style=verilog]{../../../lab3/lab3.srcs/sources_1/new/encoder4x2_cas.v}
 
 which is elaborated into similiar schematic (\ref{cascaded_42_encoder}):
 
@@ -213,7 +213,7 @@ For a 16-4 priority encoder in tree architecture, with the building block select
 
 Then the verilog modeling is performed intuitively:
 
-\lstinputlisting[language=verilog, style=verilog]{../../lab3/lab3.srcs/sources_1/new/encoder16x4.v}
+\lstinputlisting[language=verilog, style=verilog]{../../../lab3/lab3.srcs/sources_1/new/encoder16x4.v}
 
 which results in the Fig.(\ref{164_elaborated}) after elaboration, and Fig.(\ref{164_synthesis}) after synthesis:
 
@@ -365,10 +365,10 @@ In Fig.(\ref{timing_sim_aftersynth_164_lut}), the consistency of the 16-4 priori
 
 \subsection{Testbench for 16-4 priority encoder}
 
-\lstinputlisting[language=verilog, style=verilog]{../../lab3/lab3.srcs/sim_3/new/tb_encoder_16x4_lut.v}
+\lstinputlisting[language=verilog, style=verilog]{../../../lab3/lab3.srcs/sim_3/new/tb_encoder_16x4_lut.v}
 
 \subsection{Testbench for 4-2 priority encoder}
 
-\lstinputlisting[language=verilog, style=verilog]{../../lab3/lab3.srcs/sim_1/new/tb_encoder_4to2.v}
+\lstinputlisting[language=verilog, style=verilog]{../../../lab3/lab3.srcs/sim_1/new/tb_encoder_4to2.v}
 
 \end{document}
