@@ -30,6 +30,8 @@
   v(0pt, weak: true)
 }
 
+#let heading_number_list=("I.","A.","1.")
+
 #let project(title: "", authors: (), show_info: true, body) = {
   set page(
     paper: "a4",
@@ -45,6 +47,8 @@
   set math.equation(numbering: "(1)", supplement: text(font: "Linux Biolinum")[Eq.])
   set list(marker: ([▪], [▹]))
 
+  set heading(numbering:"I.A.1")
+
   show heading: it => {
     let heading_size = text_h1_size * calc.pow(heading_q, -1 * it.level)
     // let heading_size = text_base_size
@@ -58,18 +62,21 @@
     block(width: 100%)[
       #{
         set text(size: heading_size)
-        if it.level == 1 {
-          numbering("1.1.", it.level)
-          strong(it.body)
-        } else if (it.level > 1) and (it.level <= hdg_maxlevel) {
-          numbering("1.1.", it.level)
+        if (it.level <= hdg_maxlevel) {
+          if it.level==1 {
+            numbering("I.",counter(heading).get().at(0))
+          } else if it.level==2 {
+            numbering("I.A.",counter(heading).get().at(0),counter(heading).get().at(1))
+          } else if it.level==3 {
+            numbering("I.A.1.",counter(heading).get().at(0),counter(heading).get().at(1),counter(heading).get().at(2))
+          }
           strong(it.body)
         } else {
-          numbering("1.1.1.", it.level)
           emph(it.body)
         }
       }
     ]
+    // context counter(heading).get()
     let sp_true = -1*heading_size+1pt
     booktab(sp: sp_true)
   }
