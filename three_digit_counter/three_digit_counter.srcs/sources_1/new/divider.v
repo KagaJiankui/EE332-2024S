@@ -9,14 +9,14 @@ module divider (
   reg [31:0] time_count = 32'd0;
 
   always @(posedge clk) begin
-    if ((time_count >= MAIN_FREQ - PULSE_WIDTH / 2) && (time_count <= MAIN_FREQ + PULSE_WIDTH / 2)) begin
-      if (time_count == MAIN_FREQ) begin
-        time_count = 32'd0;
-      end
-      div <= 1;
+    if (time_count == (MAIN_FREQ-PULSE_WIDTH)) begin
+      div <= 1'b1;
+    end else if (time_count == MAIN_FREQ) begin
+      div <= 1'b0;
+      time_count <= 32'd0;
     end else begin
       time_count <= time_count + 32'd1;
-      div <= 0;
+      div <= div;
     end
   end
 

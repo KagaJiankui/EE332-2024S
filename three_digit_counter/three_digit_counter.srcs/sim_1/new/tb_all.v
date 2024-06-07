@@ -18,8 +18,8 @@ parameter integer T_RESET = 60;
 parameter integer T_LOAD2 = 64;
 
 divider #(
-  .MAIN_FREQ (MAIN_CLK*CTR_CLK_MULT),
-  .PULSE_WIDTH (PULSE_WIDTH)
+  .MAIN_FREQ (250),
+  .PULSE_WIDTH (50)
   ) div_0 (
   .clk (main_clock),
   .div (divided_clock)

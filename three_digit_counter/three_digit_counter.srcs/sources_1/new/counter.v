@@ -18,6 +18,7 @@ module decimal_counter (
 
   initial begin
     count = MIN_COUNT; // 自启动条件
+    carr_out = 0;
   end
 
   always @(posedge clk) begin
